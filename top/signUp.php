@@ -2,7 +2,7 @@
 
 //db接続
 try{
-    require_once './config/property.php';
+    require_once '../config/property.php';
     $pdo = get_pdo();
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
@@ -18,14 +18,13 @@ if (preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $_POST['password']
     return false;
 }
 
-//パスワードの暗号化
-//$hash_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
 //登録処理
+
 try {
     $pdo->beginTransaction();
     try {
-        $sql = "insert into USER_INFO(USER_NAME,HASH_PASSWORD) values (:USER_NAME,:HASH_PASSWORD)";
+        $sql = "insert into USER_INFO(USER_NAME,HASH_PASSWORD,INS_DATE,UPD_DATE) 
+                values (:USER_NAME,:HASH_PASSWORD,NOW(),NOW())";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':USER_NAME',$_POST['username'],PDO::PARAM_STR);
         $stmt->bindValue(':HASH_PASSWORD',$hash_pass,PDO::PARAM_STR);
@@ -35,10 +34,9 @@ try {
        ?><a href="javascript:history.back()"><i class="zmdi zmdi-arrow-left"></i>[戻る]</a><?php
     } catch (\PDOException $e) {
        $pdo->rollBack();
-       echo '登録済みのメールアドレスです。';
+       echo '登録出来ませんでした。<br>再度登録し直してください。';
        ?><a href="javascript:history.back()"><i class="zmdi zmdi-arrow-left"></i>[戻る]</a><?php
      }
 } catch (\PDOException $th) {
     throw $th;
 }
-    

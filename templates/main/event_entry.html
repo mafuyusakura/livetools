@@ -1,0 +1,29 @@
+<h1>イベント登録</h1>
+
+{debug}
+<form class="entry-sheet" name="entry-sheet" method="post" action="hoge.php">
+    <table>
+    <tr>
+        <td>開催日</td><td><input type="date" name="calendar" max="9999-12-31"></td>
+    </tr>
+    <tr>
+        <td>ライブハウス</td><td>
+            <select name="select" required>
+                <option value="">--選択してください</option>
+                <option value="1">大塚DEEPA1</option>
+                <option value="2">大塚DEEPA2</option>
+                <option value="3">大塚DEEPA3</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>イベント名</td><td><input type="text" method="post" placeholder="イベント名"></td>
+    </tr>
+    </table>
+    <input type="submit" value="登録">
+</form>
+
+<a href="javascript:history.back()"><i class="zmdi zmdi-arrow-left"></i>[キャンセル]</a>
+
+
+
