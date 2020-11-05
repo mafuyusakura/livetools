@@ -1,13 +1,6 @@
 <?php
-session_start();
-
-//db接続
-try{
-    require_once '../config/property.php';
-    $pdo = get_pdo();
-}catch(PDOException $hoge){
-    die('接続エラー:'.$hoge->getMessage());
-}
+//BD接続ファイル
+require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
 
 //sql処理
 $search_name = $_POST['username'];
@@ -29,17 +22,17 @@ try {
     return false;
   }
   
-  $id = $row['ID'].'&'.$row['AUTHORITY'];
+  $id = $row['ID'];
   $parm = $row['AUTHORITY'];
 
-  //パスワード確認後sessionにユーザー名を渡す
-  if (password_verify($search_pass, $row['HASH_PASSWORD'])) {
-    //session_idを新しく生成し、置き換える
-    session_regenerate_id(true); 
-    $_SESSION['USER_NAME'] = $row['USER_NAME'];
-  //   echo 'ログインしました';
-    header("location: ../r.php?id=$id&parm=$parm");
-  } else {
+	//パスワード確認後sessionにユーザー名を渡す
+	if (password_verify($search_pass, $row['HASH_PASSWORD'])) {
+	//session_idを新しく生成し、置き換える
+	session_regenerate_id(true); 
+	$_SESSION['USER_NAME'] = $row['USER_NAME'];
+	header("location: ./r.php?id=$id&parm=$parm");
+    	exit();
+} else {
     echo 'ユーザー名又はパスワードが間違っています。';
     return false;
-  }
+}

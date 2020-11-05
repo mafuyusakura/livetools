@@ -1,14 +1,7 @@
 <?php
 
-//db接続
-try{
-    require_once '../config/property.php';
-    $pdo = get_pdo();
-    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-}catch(\PDOException $e){
-    die('接続エラー:'.$e->getMessage());
-}
+//BD接続ファイル
+require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
 
 //パスワードの正規表現
 if (preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $_POST['password'])) {
@@ -18,7 +11,8 @@ if (preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $_POST['password']
     return false;
 }
 
-//登録処理
+
+//※※※※※※※※※登録処理※※※※※※※※※
 
 try {
     $pdo->beginTransaction();

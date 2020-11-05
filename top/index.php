@@ -1,10 +1,8 @@
 <?php
-require_once '../smarty/Smarty.class.php';
-require_once './header.php';
+//propertyファイル
+require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
 
-$smarty = new Smarty();
-$smarty->template_dir = '../templates/';
-$smarty->compile_dir  = '../templates_c/';
+require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/top/header.php');
 $smarty->display('top/login.html');
 $smarty->display('top/signup.html');
 // $smarty->display('top/reset.html');

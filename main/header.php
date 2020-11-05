@@ -10,7 +10,7 @@ if ((strpos($ua, 'Android') !== false) && (strpos($ua, 'Mobile') !== false) || (
         <meta name='viewport' content='width=device-width,initial-scale=1.0' />
         <meta charset='utf-8'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
-        <link rel='stylesheet' href='../css/sp.css'>
+        <link rel='stylesheet' href='../css/hoge.css'>
         <title></title>
         </head>
         <body>";
@@ -24,7 +24,7 @@ if ((strpos($ua, 'Android') !== false) && (strpos($ua, 'Mobile') !== false) || (
 		<meta name='viewport' content='width=device-width,initial-scale=1.0' />
 		<meta charset='utf-8'>
 		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
-		<link rel='stylesheet' href='../css/tab.css'>
+		<link rel='stylesheet' href='../css/hoge.css'>
 		<title></title>
 		</head>
 		<body>";
@@ -38,7 +38,7 @@ if ((strpos($ua, 'Android') !== false) && (strpos($ua, 'Mobile') !== false) || (
 		<meta name='viewport' content='width=device-width,initial-scale=1.0' />
 		<meta charset='utf-8'>
 		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
-		<link rel='stylesheet' href='../css/pc.css'>
+		<link rel='stylesheet' href='../css/hoge.css'>
 		<title></title>
 		</head>
 		<body>";
