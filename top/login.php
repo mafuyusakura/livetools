@@ -30,8 +30,10 @@ try {
 	//session_idを新しく生成し、置き換える
 	session_regenerate_id(true); 
 	$_SESSION['USER_NAME'] = $row['USER_NAME'];
+	$_SESSION['ID'] = $row['ID'];
+	$_SESSION['AUTHORITY'] = $row['AUTHORITY'];
 	header("location: ./r.php?id=$id&parm=$parm");
-    	exit();
+  exit();
 } else {
     echo 'ユーザー名又はパスワードが間違っています。';
     return false;
