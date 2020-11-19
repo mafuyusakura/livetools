@@ -1,5 +1,5 @@
 
-var t = 2 ;
+var t = row+1;
 function addForm() {
   if (t >= 13) {
     alert('これ以上増やせません。');
@@ -8,7 +8,8 @@ function addForm() {
 
   let table = document.getElementById('memberform');
   let newRow = table.insertRow();
-  
+  newRow.id = t;
+
   let newCell = newRow.insertCell();
   let newText = document.createTextNode('メンバー');
   newCell.appendChild(newText);
@@ -35,18 +36,38 @@ function addForm() {
   input_data.placeholder = '名前';
   newCell.appendChild(input_data);
 
-  t++;
+  t++; //カウンタ増
 
 }
 
 function dltForm() {
+  // row = "";
+  rows = row+4; //現在の行数+デフォルト5行
   var table = document.getElementById('memberform');
   var row_num = table.rows.length;
-  if (row_num>5) {
+  if (rows<row_num) {
       table.deleteRow(row_num - 1);
+  }else{
+    alert('これ以上減らせません。');
+    exit;
   }
 
-  t--;
+  t--; //カウンタ減
 
 }
 
+function dltrow() {
+  let row_now = document.getElementById('memberform');
+  rows = row+4; //現在の行数+デフォルト5行
+  var table = document.getElementById('memberform');
+  var row_num = table.rows.length;
+  if (rows<row_num) {
+      table.deleteRow(row_num - 1);
+  }else{
+    alert('これ以上減らせません。');
+    exit;
+  }
+
+  t--; //カウンタ減
+
+}
