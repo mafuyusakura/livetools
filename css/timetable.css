@@ -1,0 +1,15 @@
+.title-bar {
+  background-color:  #80808066;
+  font-size: 22px;
+}
+
+.conf-bottum {
+  background-color:  #80808066;
+  text-align:center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.conf-bottum input{
+  width:35%;
+}
