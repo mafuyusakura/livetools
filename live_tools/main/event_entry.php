@@ -1,10 +1,10 @@
 <?php
 //propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/login_check.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/login_check.php');
 //BD接続ファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/main/header.php');
 
 // 権限ありユーザ判定 [1:有,0:無]
@@ -25,13 +25,9 @@ try {
   } catch (\Exception $e) {
     echo $e->getMessage() . PHP_EOL;
   }
-
-//初期化
-$eventname = "";
-
 ?>
 
-<h1>イベント登録</h1>
+<h1><img src="<?php print $url[1]; ?>/image/onpu.png" alt="none">イベント登録</h1>
 <form class="entry-sheet" name="entry-sheet" method="post" action="event_entry_sql.php">
 	<table>
     <tr>
@@ -43,19 +39,20 @@ $eventname = "";
             <select name="livehouse" required>
                 <option value="">--選択してください</option>
                 <?php foreach ($r as $house) { ?>
-                    <option value="<?php print $house['id'] ?>"><?php print $house['HOUSE_NAME'] ?></option>
+                    <option value="<?php print h($house['ID']) ?>"><?php print h($house['HOUSE_NAME']) ?></option>
 				<?php } ?>
             </select>
         </td>
     </tr>
     <tr>
-        <td>イベント名</td><td><input type="text" name="eventname" value="<?php print h($eventname) ?>" placeholder="イベント名"></td>
+        <td>イベント名</td><td><input type="text" name="eventname" placeholder="イベント名"></td>
     </tr>
     <tr>
         <td>レンタル時間</td>
         <td>
         <select name="rentaltime" required>
             <option value="">--選択してください</option>
+            <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
@@ -78,7 +75,7 @@ $eventname = "";
 try {
     $sql1 = "
             select 
-                EVENT_ID, EVENT_DATE, EVENT_NAME
+                EVENT_ID, EVENT_DATE, EVENT_NAME, TT_FLG
             from 
                 EVENT_LIST 
             where 
@@ -101,17 +98,17 @@ $unique = array_column($r1,'EVENT_DATE');
 // $unique = array_unique($unique);
 
 
-
 //イベント判定
-if ($count < 0) {
+if ($count <= 0) {
+    print "<br>";
     print "開催予定がありません。<br>";
+    print "<br>";
     print "<a href=".$url[2]."><i class='zmdi zmdi-arrow-left'></i>[Back]</a>";
     exit;
 }
 ?>
 
-<h1>イベント編集</h1>
-開催日<br>
+<h1><img src="<?php print $url[1]; ?>/image/mixer.png" alt="none">イベント編集</h1>
     <?php
     //編集ページ遷移用URL生成
     foreach ($r1 as $key => $value) {
@@ -122,10 +119,8 @@ if ($count < 0) {
 
 ?>
 
-<h1>タイムテーブル</h1>
-開催日<br>
+<h1><img src="<?php print $url[1]; ?>/image/view.png" alt="none">タイムテーブル</h1>
     <?php
-
     //編集ページ遷移用URL生成
     foreach ($r1 as $key => $value) {
         print "<a href='".$url[2]."/timetable?id=".$value['EVENT_ID']."&parm=".$value['EVENT_DATE']."'>"
@@ -133,4 +128,4 @@ if ($count < 0) {
             ."</a><br>";
     }
 
-print "<a href=".$url[2]."><i class='zmdi zmdi-arrow-left'></i>[Back]</a>";
+print "<div class='back-button'><a href=$url[2]><i class='zmdi zmdi-arrow-left'></i>[Back]</a></div>";

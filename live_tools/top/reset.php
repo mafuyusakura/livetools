@@ -11,14 +11,12 @@ if (preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $_POST['password']
     return false;
 }
 
-
-//※※※※※※※※※登録処理※※※※※※※※※
+//※※※※※※※※※再登録処理※※※※※※※※※
 
 try {
     $pdo->beginTransaction();
     try {
-        $sql = "insert into USER_INFO(USER_NAME,HASH_PASSWORD,INS_DATE,UPD_DATE) 
-                values (:USER_NAME,:HASH_PASSWORD,NOW(),NOW())";
+        $sql = "update USER_INFO set HASH_PASSWORD = :HASH_PASSWORD, UPD_DATE = NOW() where USER_NAME = :USER_NAME";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':USER_NAME',$_POST['username'],PDO::PARAM_STR);
         $stmt->bindValue(':HASH_PASSWORD',$hash_pass,PDO::PARAM_STR);
@@ -28,9 +26,11 @@ try {
        ?><a href="javascript:history.back()"><i class="zmdi zmdi-arrow-left"></i>[戻る]</a><?php
     } catch (\PDOException $e) {
        $pdo->rollBack();
-       echo '登録出来ませんでした。<br>再度登録し直してください。';
+       echo '登録済みのメールアドレスです。';
        ?><a href="javascript:history.back()"><i class="zmdi zmdi-arrow-left"></i>[戻る]</a><?php
      }
 } catch (\PDOException $th) {
     throw $th;
 }
+
+

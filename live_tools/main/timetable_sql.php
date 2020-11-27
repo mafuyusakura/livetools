@@ -17,7 +17,7 @@ try {
 		// event_list アップデート文  入り,捌け,レンタル時間
 		$sql1 = "
 				update
-					event_list
+					EVENT_LIST
 				set
 					ENTER_TIME = :rehst,
 					END_TIME = :rehen,
@@ -63,7 +63,7 @@ try {
 			$ctltm = $_POST['ctltm'.$i];
 			$ctlsc = $_POST['ctlsc'.$i];
 
-			$sql4 = "insert into TIME_TABLE (EVENT_ID, NO, BAND_NAME, START_TIME, TIME, INS_DATE, UPD_DATE)
+			$sql4 = "insert into TIMETABLE (EVENT_ID, NO, BAND_NAME, START_TIME, TIME, INS_DATE, UPD_DATE)
 					values (:evet_id, :id, :ctlnm, :ctltm, :ctlsc, NOW(), NOW())";
 			$stmt4 = $pdo->prepare($sql4);
 			$stmt4->bindValue(':evet_id',$_POST['evet_id'],PDO::PARAM_INT);

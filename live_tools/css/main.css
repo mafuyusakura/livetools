@@ -1,0 +1,36 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css");
+
+body {
+  background: #585656;
+  height: 100vh;
+  margin: 0;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* text-align: center; */
+  font-family: Helvetica neue, roboto;
+  color: #fff;
+  padding: 2%;
+}
+
+.attention {
+  color: rgb(221, 0, 0);
+}
+
+a { 
+  color: white;
+  text-decoration:none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:link, a:visited, a:hover, a:active {
+  color: white;
+}
+
+
+.back-button{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 20px;
+}

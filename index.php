@@ -1,6 +1,6 @@
 <?php
-//propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
+// propertyファイル
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 
 $url = URL2;
 $redirect[$id] = "$url/top";

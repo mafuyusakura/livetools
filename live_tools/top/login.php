@@ -1,10 +1,10 @@
 <?php
 session_start();
 //BD接続ファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
 //propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/top/header.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
+// require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/top/header.php');
 
 //sql処理
 $search_name = $_POST['username'];

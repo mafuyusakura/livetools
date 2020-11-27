@@ -1,10 +1,10 @@
 <?php
 //propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/login_check.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/login_check.php');
 //BD接続ファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/main/header.php');
 ?>
 <link rel="stylesheet" href="../css/timetable.css">
@@ -27,7 +27,7 @@ try {
             from 
                 EVENT_LIST t1
             join
-                house_info t2
+                HOUSE_INFO t2
                 on t1.HOUSE_NAME = t2.ID
             where 
                 EVENT_FLG = '0' 
@@ -46,7 +46,7 @@ try {
             from 
                 EVENT_LIST t1 
             join 
-                band_info t2 
+                BAND_INFO t2 
                 on t1.EVENT_ID = t2.EVENT_ID 
                 and t1.EVENT_DATE = t2.APPEARANCE_DATE
             where 
@@ -84,14 +84,14 @@ $js_control = json_encode($control);
 <h1>タイムテーブル</h1>
 <p class="title-bar"><?php print h(date('Y/m/d',strtotime($e_arr['EVENT_DATE'])))."&nbsp&nbsp".h($e_arr['EVENT_NAME']); ?></p>
 <form name="form1" method="post" action="timetable_sql.php">
-    <input type="hidden" name="evet_id" value="<?php print $e_arr['EVENT_ID'] ?>">
+    <input type="hidden" name="evet_id" value="<?php print h($e_arr['EVENT_ID']) ?>">
     <strong>開始：</strong>
     <input type="time" name="rehst" id="from" oninput="sted()" required>
     <strong>終了:</strong>
     <input type="time" name="rehen" id="end" required>
     <br>
     <strong>レンタル時間：</strong>
-    <input type="number" name="rentt" id="to" value="<?php print $e_arr['RENTAL_TIME']; ?>" min="1" oninput="sted()">
+    <input type="number" name="rentt" id="to" value="<?php print h($e_arr['RENTAL_TIME']); ?>" min="1" oninput="sted()">
     <br>
     <strong>トータル:</strong>
     <input type="text" name="total" id="total" value="0">
@@ -111,18 +111,19 @@ $js_control = json_encode($control);
             for ($i=0; $i < $count; $i++) {
             $loop++; // id連番用 ?>
             <tr>
-                <td><input type="time" name="rehtm<?php print $loop; ?>" id="target<?php print $loop; ?>" required></td>
+                <input type="hidden" name="id_<?php print $loop; ?>" value="<?php print $loop; ?>">
+                <td><input type="time" name="ctltm<?php print $loop; ?>" id="target<?php print $loop; ?>" required></td>
                 <td>
-                    <select name="rehts<?php print $loop; ?>" id="rt_<?php print $r2[$i]['ID'] ?>" onChange="timetable(this)">
+                    <select name="ctlsc<?php print $loop; ?>" id="rt_<?php print h($r2[$i]['ID']) ?>" onChange="timetable(this)">
                     <?php foreach ($sec as $value) { ?>
                     <option value="<?php print $value; ?>"><?php print $value; ?></option>
                     <?php } ?>
                     </select>
                 </td>
                 <td colspan="2">
-                    <select name="rehnm<?php print $loop; ?>">
+                    <select name="ctlnm<?php print $loop; ?>">
                     <?php foreach ($r2 as $key => $value) { ?>
-                        <option value="<?php print $value['BAND_NAME'] ?>"><?php print $value['BAND_NAME'] ?></option>
+                        <option value="<?php print h($value['BAND_NAME']) ?>"><?php print h($value['BAND_NAME']) ?></option>
                     <?php } ?>
                     </select>
                 </td>
@@ -132,26 +133,34 @@ $js_control = json_encode($control);
     <tbody>
         <?php $loop = $loop + 2; // id連番用 ?>
         <tr>
-            <td><input type="time" name="meett<?php print $loop; ?>" id="target<?php print $loop-1; ?>" required></td>
+            <input type="hidden" name="id_<?php print $loop-1; ?>" value="<?php print $loop-1; ?>">
+            <td><input type="time" name="ctltm<?php print $loop-1; ?>" id="target<?php print $loop-1; ?>" required></td>
             <td>
-                <select name="meets"  id="op_<?php print $loop-1; ?>" onChange="timetable(this)">
+                <select name="ctlsc<?php print $loop-1; ?>" id="op_<?php print $loop-1; ?>" onChange="timetable(this)">
                     <?php foreach ($sec as $value) { ?>
                         <option value="<?php print $value; ?>"><?php print $value; ?></option>
                     <?php } ?>
                 </select>
             </td>
-            <td colspan="2">顔合わせ</td>
+            <td colspan="2">
+                <input type="hidden" name="ctlnm<?php print $loop-1; ?>" value="顔合わせ">
+                顔合わせ
+            </td>
         </tr>
         <tr>
-            <td><input type="time" name="opent<?php print $loop; ?>" id="target<?php print $loop; ?>" required></td>
+            <input type="hidden" name="id_<?php print $loop; ?>" value="<?php print $loop; ?>">
+            <td><input type="time" name="ctltm<?php print $loop; ?>" id="target<?php print $loop; ?>" required></td>
             <td>
-                <select name="opens"  id="op_<?php print $loop; ?>" onChange="timetable(this)">
+                <select name="ctlsc<?php print $loop; ?>" id="op_<?php print $loop; ?>" onChange="timetable(this)">
                     <?php foreach ($sec as $value) { ?>
                         <option value="<?php print $value; ?>"><?php print $value; ?></option>
                     <?php } ?>
                 </select>
             </td>
-            <td colspan="2">OPEN/START</td>
+            <td colspan="2">
+                <input type="hidden" name="ctlnm<?php print $loop; ?>" value="OPEN/START">
+                OPEN/START
+            </td>
         </tr>
     </tbody>
     <tr><td colspan="4"> </td></tr>
@@ -168,6 +177,7 @@ $js_control = json_encode($control);
         $loop1++; // id連番用
             if ($i % 2 == 0) { ?>
                 <tr>
+                    <input type="hidden" name="id_<?php print $loop1; ?>" value="<?php print $loop1; ?>">
                     <td><input type="time" name="ctltm<?php print $loop1; ?>" id="target<?php print $loop1; ?>" required></td>
                     <td>
                         <select name="ctlsc<?php print $loop1; ?>" id="bt_<?php print $loop1; ?>" onChange="timetable(this)">
@@ -179,7 +189,7 @@ $js_control = json_encode($control);
                     <td>
                         <select name="ctlnm<?php print $loop1; ?>" id="ctl<?php print $loop1; ?>" onChange="select_ctl(this)">
                         <?php foreach ($control as $key => $value) { ?>
-                            <option value="<?php print $value['BAND_NAME'] ?>"><?php print $value['BAND_NAME'] ?></option>
+                            <option value="<?php print h($value['BAND_NAME']) ?>"><?php print h($value['BAND_NAME']) ?></option>
                         <?php } ?>
                         </select>
                     </td>
@@ -192,16 +202,17 @@ $js_control = json_encode($control);
             }else{ 
                 //転換用 ?>
                 <tr>
-                    <td><input type="time" name="herft<?php print $loop1; ?>" id="target<?php print $loop1; ?>" required></td>
+                    <input type="hidden" name="id_<?php print $loop1; ?>" value="<?php print $loop1; ?>">
+                    <td><input type="time" name="ctltm<?php print $loop1; ?>" id="target<?php print $loop1; ?>" required></td>
                     <td>
-                        <select name="herfs<?php print $loop1; ?>" id="ht_<?php print $loop1; ?>" onChange="timetable(this)">
+                        <select name="ctlsc<?php print $loop1; ?>" id="ht_<?php print $loop1; ?>" onChange="timetable(this)">
                             <?php foreach ($sec as $value) { ?>
                                 <option value="<?php print $value; ?>"><?php print $value; ?></option>
                             <?php } ?>
                         </select>
                     </td>
                     <td colspan="2">
-                        <select name="objnm<?php print $loop1; ?>" id="oj_<?php print $loop1; ?>" onChange="endtime(this)">
+                        <select name="ctlnm<?php print $loop1; ?>" id="oj_<?php print $loop1; ?>" onChange="endtime(this)">
                             <?php foreach ($obj as $value) { ?>
                                 <option value="<?php print $value; ?>"><?php print $value; ?></option>
                             <?php } ?>
@@ -228,12 +239,12 @@ $js_control = json_encode($control);
     ⑤　インターバルの時間を入力します。<br>最終項目のインターバルは「完全撤収」を選択してください。<br>自動的に最終時間が入力されます。<br>
 </div>
 <?php 
-print "<a href=".$url[2]."/event_entry><i class='zmdi zmdi-arrow-left'></i>[Back]</a>";
+print "<div class='back-button'><a href=$url[2]><i class='zmdi zmdi-arrow-left'></i>[Back]</a></div>";
 ?>
-</body>
 <script src="../js/conf.js"></script>
 <script src="../js/timetable.js"></script>
 <script type="text/javascript">
     var control=JSON.parse('<?php print $js_control; ?>')
 </script>
 
+</body>

@@ -1,9 +1,9 @@
 <?php
 //smarty定義
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/smarty/Smarty.class.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/smarty/Smarty.class.php');
 $smarty = new Smarty();
-$smarty->template_dir = $_SERVER['DOCUMENT_ROOT'] . '/live_tools/templates/';
-$smarty->compile_dir  = $_SERVER['DOCUMENT_ROOT'] . '/live_tools/templates_c/';
+$smarty->template_dir = $_SERVER['DOCUMENT_ROOT'] . '/templates/';
+$smarty->compile_dir  = $_SERVER['DOCUMENT_ROOT'] . '/templates_c/';
 
 //URL定数化 + smartyにアサイン
 define ('URL1', (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST']);
@@ -14,7 +14,6 @@ $url = [URL1, URL2, URL3, URL4];
 $smarty->assign('url', $url);
 
 //ユーザー関数設定
-//テキストボックス用
 function h($text) {
 	return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 }

@@ -1,6 +1,6 @@
 <?php
 //propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 
 $id = $_GET['id'];
 $parm = $_GET['parm'];

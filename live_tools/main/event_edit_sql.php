@@ -1,8 +1,10 @@
 <?php
 //propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
+//ログイン確認
+require_once($_SERVER['DOCUMENT_ROOT'] . '/login_check.php');
 //BD接続ファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/main/header.php');
 
 try {

@@ -1,10 +1,11 @@
 <?php
 //propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
-$url = [URL1, URL2, URL3, URL4];
-$smarty->assign('url', $url);
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
+//ログイン確認
+require_once($_SERVER['DOCUMENT_ROOT'] . '/login_check.php');
 //BD接続ファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/main/header.php');
 
 //※※※※※※※※※登録前処理※※※※※※※※※
 
@@ -37,7 +38,7 @@ $EVENT_DATE = $res1[0]['EVENT_DATE'];
 $NEW_ID = $res2['ID']; //最新ID+1取得
 
 $num_1 = $_POST['num']+1;
-$list = array('part_', 'member_', 'remarks_');
+$list = array('part_', 'member_');
 
 
 //入力チェック
@@ -80,16 +81,10 @@ $ins3 = 'INS_DATE, UPD_DATE) VALUES ('.$NEW_ID.', '.$EVENT_ID.', :BAND_NAME, ';
 $ins4 = '';
 $ins5 = 'NOW(), NOW())';
 for ($i=1; $i < $num_1; $i++) { 
-	$ins2 .= $list[0].$i.
-			', '.$list[1].$i.
-			// ', '.$list[2].$i.
-			', ';
+	$ins2 .= $list[0].$i.', '.$list[1].$i.', ';
 }
 for ($i=1; $i < $num_1; $i++) { 
-	$ins4 .= ':'.$list[0].$i.
-			', :'.$list[1].$i.
-			// ', :'.$list[2].$i.
-			', ';
+	$ins4 .= ':'.$list[0].$i.', :'.$list[1].$i.', ';
 }
 
 
@@ -117,7 +112,6 @@ try {
 			$h = $list[1].$i;
 			$stmt2->bindValue(':'.$g,$t,PDO::PARAM_STR);
 			$stmt2->bindValue(':'.$h,$y,PDO::PARAM_STR);
-			// $stmt2->bindValue(':REMARKS_'.$i,$_POST['remarks_'.$i],PDO::PARAM_STR);
 		}
 		$stmt2->execute();
 

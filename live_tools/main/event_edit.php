@@ -1,10 +1,10 @@
 <?php
 //propertyファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/property.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/login_check.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/login_check.php');
 //BD接続ファイル
-require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/main/header.php');
 
 // 権限ありユーザ判定 [1:有,0:無]
@@ -24,7 +24,7 @@ try {
             from 
                 EVENT_LIST t1
             join
-                house_info t2
+                HOUSE_INFO t2
                 on t1.HOUSE_NAME = t2.ID
             where 
                 EVENT_FLG = '0' 
@@ -38,7 +38,7 @@ try {
     $r1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
     $e_arr = $r1[0];
 
-    $sql2 = "select ID, HOUSE_NAME from house_info ";
+    $sql2 = "select ID, HOUSE_NAME from HOUSE_INFO ";
     $stmt2 = $pdo->prepare($sql2);
     $stmt2->execute();
     $r2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -80,6 +80,7 @@ try {
                 →
                 <select name="time">
                     <option value="">--選択してください</option>
+                    <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7">7</option>
@@ -140,5 +141,5 @@ try {
         <div class="attention"> ※変更がある項目のみ修正してください。<br></div><br><br>
     </form>
 <?php 
-print "<a href=".$url[2]."/event_entry><i class='zmdi zmdi-arrow-left'></i>[Back]</a>";
+print "<div class='back-button'><a href=$url[2]><i class='zmdi zmdi-arrow-left'></i>[Back]</a></div>";
 ?>

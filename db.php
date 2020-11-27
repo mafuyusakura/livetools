@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 //db接続
 try{
     require_once '../config/property.php';

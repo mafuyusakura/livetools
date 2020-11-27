@@ -1,11 +1,11 @@
 {* 権限あれば表示 *}
 {if $smarty.session.AUTHORITY == 1}
-    <a href="{$url[2]}/event_entry">イベント 登録</a><br>
+<div style="margin: 2%;"><img src="{$url[1]}/image/onpu.png" alt="none" width="15px"><a href="{$url[2]}/event_entry">イベント 登録</a></div>
 {/if}
 
 {* 常に表示 *}
-<a href="{$url[2]}/band_entry">バンド 登録</a><br>
-<a href="{$url[2]}/band_edit">バンド 編集</a><br>
-<a href="{$url[2]}/timetable">タイムテーブル</a><br>
-<a href="{$url[1]}/top/logout">ログアウト</a><br>
+<div style="margin: 2%;"><img src="{$url[1]}/image/mixer.png" alt="none" width="15px"><a href="{$url[2]}/band_entry" border="0">バンド 登録</a></div>
+<div style="margin: 2%;"><img src="{$url[1]}/image/next.png" alt="none" width="15px"><a href="{$url[2]}/band_edit">バンド 編集</a></div>
+{*<div style="margin: 2%;"><a href="{$url[2]}/timetable">タイムテーブル</a></div>*}
+<div style="margin: 2%;"><img src="{$url[1]}/image/logout.png" alt="none" width="15px"><a href="{$url[1]}/top/logout">ログアウト</a></div>
 
