@@ -1,4 +1,5 @@
 <?php
+$parm = "";
 //propertyファイル
 require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認
@@ -6,7 +7,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/login_check.php');
 //BD接続ファイル
 require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/main/header.php');
-?><script src="../js/select.js"></script><?php
 
 //sql処理
 //ライブ情報取得
@@ -293,4 +293,4 @@ print "<div class='back-button'><a href=$url[2]><i class='zmdi zmdi-arrow-left'>
 </script>
 <script text="script/javascript" src="../js/conf.js"></script>
 <script text="script/javascript" src="../js/addbox.js"></script>
-
+<script text="script/javascript" src="../js/select.js"></script>

@@ -1,4 +1,5 @@
 <?php
+$parm = "";
 //propertyファイル
 require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認
@@ -114,7 +115,7 @@ $js_control = json_encode($control);
                 <input type="hidden" name="id_<?php print $loop; ?>" value="<?php print $loop; ?>">
                 <td><input type="time" name="ctltm<?php print $loop; ?>" id="target<?php print $loop; ?>" required></td>
                 <td>
-                    <select name="ctlsc<?php print $loop; ?>" id="rt_<?php print h($r2[$i]['ID']) ?>" onChange="timetable(this)">
+                    <select name="ctlsc<?php print $loop; ?>" id="rt_<?php print $loop; ?>" onChange="timetable(this)">
                     <?php foreach ($sec as $value) { ?>
                     <option value="<?php print $value; ?>"><?php print $value; ?></option>
                     <?php } ?>

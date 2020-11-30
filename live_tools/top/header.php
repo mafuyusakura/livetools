@@ -11,7 +11,9 @@ if ((strpos($ua, 'Android') !== false) && (strpos($ua, 'Mobile') !== false) || (
         <meta charset='utf-8'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
         <link rel='stylesheet' href='../css/top/sp.css'>
-        <title></title>
+		<script type='text/javascript' src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+		<script type='text/javascript' src='../js/script.js'></script>
+		<title></title>
         </head>
         <body>";
 
@@ -25,6 +27,8 @@ if ((strpos($ua, 'Android') !== false) && (strpos($ua, 'Mobile') !== false) || (
 		<meta charset='utf-8'>
 		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
 		<link rel='stylesheet' href='../css/top/tab.css'>
+		<script type='text/javascript' src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+		<script type='text/javascript' src='../js/script.js'></script>
 		<title></title>
 		</head>
 		<body>";
@@ -39,6 +43,8 @@ if ((strpos($ua, 'Android') !== false) && (strpos($ua, 'Mobile') !== false) || (
 		<meta charset='utf-8'>
 		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
 		<link rel='stylesheet' href='../css/top/pc.css'>
+		<script type='text/javascript' src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+		<script type='text/javascript' src='../js/script.js'></script>
 		<title></title>
 		</head>
 		<body>";

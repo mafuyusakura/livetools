@@ -1,4 +1,5 @@
 <?php
+$parm = "";
 //propertyファイル
 require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認

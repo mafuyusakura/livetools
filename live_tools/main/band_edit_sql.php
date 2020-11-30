@@ -1,4 +1,5 @@
 <?php
+$parm = "";
 //propertyファイル
 require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認
@@ -90,12 +91,13 @@ try {
         }
         
 		$pdo->commit();
-		print '登録完了！';
-		print "<a href=".$url[2]."><i class='zmdi zmdi-arrow-left'></i>[戻る]</a>";
-		} catch (\PDOException $e) {
+		// print '登録完了！';
+		// print "<a href=".$url[2]."><i class='zmdi zmdi-arrow-left'></i>[戻る]</a>";
+		header("location: $url[2]");
+	} catch (\PDOException $e) {
 			$pdo->rollBack();
-			print '登録出来ませんでした。<br>再度登録し直してください。';
-			print $e;
+			print '登録出来ませんでした。<br>再度登録し直してください。<br>';
+			// print $e;
 			print "<a href='javascript:history.back()'><i class='zmdi zmdi-arrow-left'></i>[戻る]</a>";
 		}
 	} catch (\PDOException $th) {

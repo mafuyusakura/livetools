@@ -1,4 +1,5 @@
 <?php
+$parm = "";
 //propertyファイル
 require_once($_SERVER['DOCUMENT_ROOT'] . '/property.php');
 //ログイン確認
@@ -49,12 +50,14 @@ try {
         $stmt->bindValue(':HOUSE_NAME',$_POST['livehouse'],PDO::PARAM_STR);
         $stmt->execute();
         $pdo->commit();
-        print '登録完了！';
-        print "<a href=".$url[2]."><i class='zmdi zmdi-arrow-left'></i>[戻る]</a>";
-    } catch (\PDOException $e) {
-        $pdo->rollBack();
-        print '登録出来ませんでした。<br>再度登録し直してください。';
-        print "<a href='javascript:history.back()'><i class='zmdi zmdi-arrow-left'></i>[戻る]</a>";
+        // print '登録完了！';
+        // print "<a href=".$url[2]."><i class='zmdi zmdi-arrow-left'></i>[戻る]</a>";
+		header("location: $url[2]");
+	} catch (\PDOException $e) {
+		$pdo->rollBack();
+		print '登録出来ませんでした。<br>再度登録し直してください。<br>';
+		// print $e;
+		print "<a href='javascript:history.back()'><i class='zmdi zmdi-arrow-left'></i>[Back]</a>";
     }
 } catch (\PDOException $th) {
     throw $th;

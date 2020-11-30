@@ -1,17 +1,18 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css");
+
 body {
-  background: #585656;
   height: 100vh;
   margin: 0;
   font-family: Helvetica neue, roboto;
-  color: #fff;
+  /* color: #fff; */
   padding: 2%;
-  background-image: url(../image/background/black_renga.jpg);
-  background-size: cover;
 }
+
 
 .attention {
   color: rgb(221, 0, 0);
 }
+
 
 a { 
   color: white;
@@ -31,17 +32,17 @@ a:link, a:visited, a:hover, a:active {
     font-size: 20px;
 }
 
-.title-bar {
-  font-size: 25px;
+
+table{
+  width:100%;
+  text-align: center;
+}
+table th,td{
+  text-align: left;
 }
 
 
-hr {
-  background-image: url(../image/bar/L/bar_06.png);
-  height: 7px;
-  border-style: none;
-}
-
-.main-list{
-  margin: 2%;
+.title-bar{
+  text-align: center;
+  font-size: larger;
 }
