@@ -7,11 +7,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/live_tools/main/header.php');
 
 
-
-
-
-
-
 try {
 	$pdo->beginTransaction();
 	try {

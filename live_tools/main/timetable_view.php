@@ -22,7 +22,7 @@ try {
             from 
                 EVENT_LIST t1
             join 
-                timetable t2
+                TIMETABLE t2
              on t1.EVENT_ID = t2.`EVENT_ID`
             where 
                 t1.EVENT_FLG = '0' 
